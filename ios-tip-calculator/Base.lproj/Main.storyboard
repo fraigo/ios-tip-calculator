@@ -18,8 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rvT-7c-NVh">
-                                <rect key="frame" x="10" y="306.66666666666669" width="355" height="199.66666666666669"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifc-7G-MNu">
+                                <rect key="frame" x="85.999999999999986" y="78" width="201.66666666666663" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rvT-7c-NVh">
+                                <rect key="frame" x="10" y="198.66666666666669" width="355" height="229.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOe-xn-oYT">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="25.333333333333332"/>
@@ -28,25 +34,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Wz-md-VgW">
-                                        <rect key="frame" x="0.0" y="25.333333333333314" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="25.333333333333343" width="355" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="amountChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ihE-LT-plU"/>
+                                            <action selector="editAmount:" destination="BYZ-38-t0r" eventType="editingChanged" id="CJV-h1-lPM"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip percentage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYg-KZ-u39">
-                                        <rect key="frame" x="0.0" y="55.333333333333314" width="355" height="24"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="355" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="15" borderStyle="roundedRect" placeholder="15" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="scc-EU-Ldy">
-                                        <rect key="frame" x="0.0" y="79.333333333333314" width="355" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CB0-ZE-cQm">
+                                        <rect key="frame" x="0.0" y="79.333333333333343" width="355" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="editAmount:" destination="BYZ-38-t0r" eventType="editingChanged" id="Zr2-I2-xIj"/>
+                                        </connections>
                                     </textField>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LSc-GD-2B0">
+                                        <rect key="frame" x="-2" y="109.33333333333334" width="359" height="31"/>
+                                        <connections>
+                                            <action selector="adjustTipPercentage:" destination="BYZ-38-t0r" eventType="valueChanged" id="wf9-4T-d5E"/>
+                                        </connections>
+                                    </slider>
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7i-LF-79M">
-                                        <rect key="frame" x="0.0" y="109.33333333333331" width="355" height="58"/>
+                                        <rect key="frame" x="0.0" y="139.33333333333334" width="355" height="58"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                         <state key="normal" title="Calculate Tip"/>
                                         <connections>
@@ -54,24 +73,19 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sa0-9N-WPN">
-                                        <rect key="frame" x="0.0" y="167.33333333333331" width="355" height="32.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="197.33333333333334" width="355" height="32.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifc-7G-MNu">
-                                <rect key="frame" x="86.666666666666671" y="78" width="201.66666666666663" height="40.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rvT-7c-NVh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="15q-oY-VYX"/>
-                            <constraint firstItem="rvT-7c-NVh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Oox-O1-FfO"/>
+                            <constraint firstItem="rvT-7c-NVh" firstAttribute="top" secondItem="ifc-7G-MNu" secondAttribute="bottom" constant="80" id="DUl-S5-wtG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rvT-7c-NVh" secondAttribute="trailing" constant="10" id="R0g-8W-ki8"/>
                             <constraint firstItem="ifc-7G-MNu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hHQ-26-POH"/>
                             <constraint firstItem="ifc-7G-MNu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="vIW-iJ-53q"/>
@@ -81,8 +95,10 @@
                     <connections>
                         <outlet property="billAmountTextField" destination="0Wz-md-VgW" id="hAA-Yp-aA0"/>
                         <outlet property="calculateButton" destination="b7i-LF-79M" id="baM-oO-aRL"/>
+                        <outlet property="stackView" destination="rvT-7c-NVh" id="9EX-O9-cFF"/>
                         <outlet property="tipAmountLabel" destination="Sa0-9N-WPN" id="psM-Mj-CDJ"/>
-                        <outlet property="tipPercentageTextField" destination="scc-EU-Ldy" id="wsS-iP-YgC"/>
+                        <outlet property="tipPercentageSlider" destination="LSc-GD-2B0" id="z5U-py-Fd5"/>
+                        <outlet property="tipPercentageTextField" destination="CB0-ZE-cQm" id="YKv-uY-3xi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
