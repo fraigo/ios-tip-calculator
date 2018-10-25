@@ -21,17 +21,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scrollView.delegate = self;
-        scrollView.isScrollEnabled = true;
+        // Controls input text to filter characters
         billAmountTextField.delegate = self;
-        
+        // keyboard show notification
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        // keyboard hide notification
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        //Default calculation
         calculateTip()
     }
     
     override func viewDidLayoutSubviews() {
+        // Sets the contentSize of the scrollView
         scrollView.contentSize = stackView.frame.size
     }
     
@@ -39,9 +40,11 @@ class ViewController: UIViewController {
         print("Keyboard on")
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue) {
+            // Scroll to the bill amount text field
             if billAmountTextField.isFirstResponder{
                 showKeyboard(textField: billAmountTextField, keyboardSize: keyboardSize)
             }
+            // Scroll to the tip percentage text field (now disabled)
             if tipPercentageTextField.isFirstResponder{
                 showKeyboard(textField: tipPercentageTextField, keyboardSize: keyboardSize)
             }
@@ -53,9 +56,11 @@ class ViewController: UIViewController {
     }
     
     func showKeyboard(textField:UITextField, keyboardSize: NSValue){
-        
+        // auto-select text from field
+        textField.selectAll(nil)
         UIView.animate(withDuration: 0.3, animations: {
             print("Scroll to", textField.frame.origin)
+            // scroll view to the label and text field
             self.scrollView.setContentOffset(textField.frame.origin.translateY(-self.stackView.spacing * 1.5), animated: true)
         })
     
@@ -63,25 +68,24 @@ class ViewController: UIViewController {
     }
     
     @IBAction func editAmount(_ sender: Any) {
+        // auto-calculate on edit amount
         calculateTip()
     }
     
     @IBAction func adjustTipPercentage(_ sender: Any) {
-        
+        // auto-calculate on percentage change
         calculateTip()
     }
     
     
     func updateTipPercentage(){
-        tipPercentageTextField.text = String(Int(tipPercentageSlider.value))
+        // update text associated to percentage slider
+        tipPercentageTextField.text = String(Int(tipPercentageSlider.value)) + " %"
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func touchUpInside(_ sender: Any) {
+        // calculate on button press
         calculateTip()
     }
     
@@ -98,27 +102,16 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController : UIScrollViewDelegate{
-    
-    
-}
-
 
 extension ViewController : UITextFieldDelegate {
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        // allow only input digits
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
         return allowedCharacters.isSuperset(of: characterSet)
     }
     
-}
-
-extension CGPoint {
-    
-    func translateY(_ y: CGFloat) -> CGPoint{
-        return CGPoint(x: self.x, y: self.y + y)
-    }
 }
