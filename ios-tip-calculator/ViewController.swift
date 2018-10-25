@@ -53,6 +53,7 @@ class ViewController: UIViewController {
     }
     
     func showKeyboard(textField:UITextField, keyboardSize: NSValue){
+        
         UIView.animate(withDuration: 0.3, animations: {
             print("Scroll to", textField.frame.origin)
             self.scrollView.setContentOffset(textField.frame.origin.translateY(-self.stackView.spacing * 1.5), animated: true)
