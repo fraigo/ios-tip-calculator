@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios-tip-calculator/ViewController.swift"
-            timestampString = "562044578.882931"
+            timestampString = "562212620.956789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "touchUpInside(_:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "editAmount(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ios-tip-calculator/ViewController.swift"
-            timestampString = "562044578.883296"
+            timestampString = "562212620.9571379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "49"

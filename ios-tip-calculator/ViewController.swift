@@ -58,11 +58,17 @@ class ViewController: UIViewController {
     func showKeyboard(textField:UITextField, keyboardSize: NSValue){
         // auto-select text from field
         textField.selectAll(nil)
-        UIView.animate(withDuration: 0.3, animations: {
-            print("Scroll to", textField.frame.origin)
-            // scroll view to the label and text field
-            self.scrollView.setContentOffset(textField.frame.origin.translateY(-self.stackView.spacing * 1.5), animated: true)
-        })
+        // compute if textView is out of view
+        let result = textField.superview?.convert(textField.frame, to: nil)
+        let textBottom = (result?.origin.y)! + textField.frame.height
+        let keyboardTop = keyboardSize.cgRectValue.origin.y
+        if (textBottom > keyboardTop){
+            UIView.animate(withDuration: 0.3, animations: {
+                print("Scroll to", textField.frame.origin)
+                // scroll view to the label and text field
+                self.scrollView.setContentOffset(textField.frame.origin.translateY(-self.stackView.spacing * 1.5), animated: true)
+            })
+        }
     
         
     }
@@ -93,7 +99,7 @@ class ViewController: UIViewController {
         updateTipPercentage()
         let amount = Int(billAmountTextField.text!) ?? 0
         let percentage = Int(tipPercentageSlider.value)
-        tipAmountLabel.text = String(amount * percentage / 100)
+        tipAmountLabel.text = "Tip Amount $\(String(amount * percentage / 100))"
     }
     
     
@@ -114,4 +120,11 @@ extension ViewController : UITextFieldDelegate {
         return allowedCharacters.isSuperset(of: characterSet)
     }
     
+}
+
+extension CGPoint {
+    
+    func translateY(_ y:CGFloat) -> CGPoint {
+        return CGPoint(x: self.x, y: self.y + y)
+    }
 }
