@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         updateTipPercentage()
         let amount = Int(billAmountTextField.text!) ?? 0
         let percentage = Int(tipPercentageSlider.value)
-        tipAmountLabel.text = "Tip Amount $\(String(amount * percentage / 100))"
+        tipAmountLabel.text = "$\(String(amount * percentage / 100))"
     }
     
     
