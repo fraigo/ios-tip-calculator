@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         // Sets the contentSize of the scrollView
-        scrollView.contentSize = stackView.frame.size
+        scrollView.contentSize = CGSize(width: stackView.frame.size.width, height: stackView.frame.size.height+stackView.spacing)
     }
     
     @objc func keyBoardDidShow(notification:NSNotification){
@@ -49,6 +49,14 @@ class ViewController: UIViewController {
                 showKeyboard(textField: tipPercentageTextField, keyboardSize: keyboardSize)
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+            textField.resignFirstResponder()
+            //or
+            //self.view.endEditing(true)
+            return true
     }
     
     @objc func keyBoardDidHide(notification:NSNotification){
