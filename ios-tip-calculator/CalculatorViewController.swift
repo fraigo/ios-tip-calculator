@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
 
     @IBOutlet weak var billAmountTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController : UITextFieldDelegate {
+extension CalculatorViewController : UITextFieldDelegate {
     
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
