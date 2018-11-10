@@ -67,9 +67,11 @@ class CalculatorViewController: UIViewController {
         // auto-select text from field
         textField.selectAll(nil)
         // compute if textView is out of view
+        let screenSize = UIScreen.main.bounds
         let result = textField.superview?.convert(textField.frame, to: nil)
         let textBottom = (result?.origin.y)! + textField.frame.height
-        let keyboardTop = keyboardSize.cgRectValue.origin.y
+        let keyboardTop = screenSize.height - keyboardSize.cgRectValue.height
+        print(textBottom, keyboardTop, keyboardSize)
         if (textBottom > keyboardTop){
             UIView.animate(withDuration: 0.3, animations: {
                 print("Scroll to", textField.frame.origin)
